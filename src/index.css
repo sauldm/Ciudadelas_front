@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    @apply bg-game-back text-game-text-main font-body;
+  }
+
+  h1 {
+    @apply font-title text-title text-game-text-title;
+  }
+
+  h2 {
+    @apply font-title text-subtitle text-game-text-title;
+  }
+
+  h3 {
+    @apply font-title text-[20px] text-game-text-secondary;
+  }
+
+  p {
+    @apply font-body text-paragraph text-game-text-secondary;
+  }
+
+  button {
+    @apply rounded-lg font-body text-button bg-game-highlight text-game-text-inverse shadow-md transition-all duration-150 px-4 py-2;
+  }
+
+  button:hover {
+    @apply brightness-90 ring-2 ring-game-highlight;
+  }
+
+  button:active {
+    @apply shadow-sm translate-y-0.5;
+  }
+
+  button:disabled {
+    @apply opacity-50 cursor-not-allowed brightness-75;
+  }
+
+  .card {
+    @apply bg-game-board rounded-md shadow-md border border-black/20 transition-all duration-200;
+  }
+
+  .card:hover {
+    @apply shadow-lg -translate-y-1;
+  }
+
+  .modal-backdrop {
+    @apply fixed inset-0 bg-black/50 z-40;
+  }
+
+  .modal {
+    @apply fixed inset-0 z-50 flex items-center justify-center;
+  }
+
+  .modal-content {
+    @apply bg-game-back border-2 border-game-board rounded-xl shadow-2xl p-6 max-w-md w-full;
+  }
+
+
+  .layout {
+    @apply grid grid-cols-12 gap-6;
+  }
+
+}
+
+@layer components {
+
+  .text-on-board {
+    @apply text-game-text-inverse;
+  }
+
+
+  /* CONTENEDORES GRANDES */
+  .container-game {
+    @apply px-6 py-6 desktop:px-8 desktop:py-8;
+  }
+
+  /* TARJETAS / BOTONES / PANELES */
+  .box {
+    @apply p-4 desktop:p-6;
+  }
+
+  /* MARGENES ENTRE SECCIONES GRANDES */
+  .section {
+    @apply mb-8 desktop:mb-10;
+  }
+
+  /* ESPACIO ENTRE TITULO Y CONTENIDO */
+  .block {
+    @apply mb-4 desktop:mb-6;
+  }
+
+  /* ICONOS Y TEXTO BREVE */
+  .inline {
+    @apply mr-2;
+  }
+
+
+  .tablero {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+    width: 100%;
+    height: 100%;
+    gap: 8px;
+  }
+
+  .celda {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 0;
+    min-width: 0;
+  }
+
+  .imagen-centro {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+  }
+
+  .player-hand {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    max-width: 100%;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+
+}
