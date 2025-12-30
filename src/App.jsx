@@ -4,6 +4,7 @@ import Home from "./containers/Home";
 import Lobby from "./containers/Lobby";
 import { LobbyProvider } from "./providers/lobbyProvider";
 import { GameProvider } from "./providers/gameProvider";
+import EndGameTable from "./containers/EndGameTable";
 
 export default function App() {
   return (
@@ -19,6 +20,8 @@ export default function App() {
               <Game />
             </GameProvider>
           } />
+          <Route path="/ranking" element={<EndGameTable />} />
+
         </Routes>
       </LobbyProvider>
     </BrowserRouter>

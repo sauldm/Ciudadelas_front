@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Card from "../../models/Card";
+import { useNavigate } from "react-router-dom";
 
 export default function GameEventModal({
   event,
@@ -8,15 +9,22 @@ export default function GameEventModal({
   onChooseCard,
   mustChoose,
   privateInfo,
-  isPlayerTurn
+  isPlayerTurn,
+  setGameEnded
 }) {
+
+  const navigate = useNavigate();
 
   console.log(event?.events)
 
   useEffect(() => {
     if (event && event.events != "ARCHITECT" && event.events != "PRIVATE") {
-      const t = setTimeout(onClose, 2000);
-      return () => clearTimeout(t);
+      setTimeout(onClose, 2000)
+    }
+    
+    if (event?.events == "GAME_ENDED") {
+      console.log("Event GAME_ENDED ejecutado")
+      setGameEnded(true);
     }
   }, [event]);
 

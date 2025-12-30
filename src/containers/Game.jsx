@@ -8,7 +8,8 @@ import { useGame } from "../providers/gameProvider";
 import CharacterHabilityManager from "../services/CharacterHabilityManager";
 import { scrollLeft, scrollRight } from "../utils/horizontalScroll";
 import ScrollableCardRow from "../components/ScrollableCardRow";
-
+import { use } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Game = () => {
     const {
@@ -32,11 +33,8 @@ const Game = () => {
     const [canBuild, setCanBuild] = useState(false);
     const [characterTurn, setCharacterTurn] = useState(null);
     const builtAreaRef = useRef(null);
-    const handAreaRef = useRef(null);
-    const buildAreaRef = useRef(null);
-    const [hasOverflow, setHasOverflow] = useState(false);
-
-
+    const [gameEnded, setGameEnded] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (!gameState?.playerCommonInfoDTOS || !nick) return;
@@ -96,31 +94,44 @@ const Game = () => {
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, [canBuild]);
 
+    if (gameEnded) {
+        return (
+            <div className="min-h-screen flex flex-col items-center bg-gray-900 text-white p-6">
+                <h1 className="text-3xl font-bold mb-6">Clasificación Final</h1>
 
-    const ScrollButtons = ({ scrollRef }) => (
-        <>
-            <button
-                onClick={() => scrollLeft(scrollRef)}
-                className="absolute left-1 top-1/2 -translate-y-1/2 z-10
-                 bg-black/60 hover:bg-black text-white
-                 w-8 h-8 rounded-full shadow-lg"
-            >
-                ◀
-            </button>
+                <table className="w-full max-w-xl border border-gray-700 rounded-lg overflow-hidden">
+                    <thead className="bg-gray-800">
+                        <tr>
+                            <th className="px-4 py-2 text-left">Posición</th>
+                            <th className="px-4 py-2 text-left">Jugador</th>
+                            <th className="px-4 py-2 text-right">Puntos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {[...gameState.playerCommonInfoDTOS]
+                            .sort((a, b) => b.points - a.points)
+                            .map((player, index) => (
+                                <tr
+                                    key={player.nickName}
+                                    className={index === 0 ? "bg-yellow-700 font-bold" : "bg-gray-800"}
+                                >
+                                    <td className="px-4 py-2">{index + 1}</td>
+                                    <td className="px-4 py-2">{player.nickName}</td>
+                                    <td className="px-4 py-2 text-right">{player.points}</td>
+                                </tr>
+                            ))}
+                    </tbody>
+                </table>
 
-            <button
-                onClick={() => scrollRight(scrollRef)}
-                className="absolute right-1 top-1/2 -translate-y-1/2 z-10
-                 bg-black/60 hover:bg-black text-white
-                 w-8 h-8 rounded-full shadow-lg"
-            >
-                ▶
-            </button>
-        </>
-    );
-
-
-
+                <button
+                    onClick={() => navigate("/ranking")}
+                    className="mt-8 px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded"
+                >
+                    Continuar
+                </button>
+            </div>
+        )
+    }
     if (!gameState || !privateInfo || !player || !enemy) {
         return (
             <div className="w-screen h-screen flex items-center justify-center bg-game-bg">
@@ -131,6 +142,7 @@ const Game = () => {
 
     return (
         <div className="w-screen h-screen bg-game-bg overflow-hidden parent-perspective">
+            <p>Mostrar tabla final: {gameEnded + ''}</p>
             <div className="w-full h-full px-4 pt-4 pb-6 md:px-6 md:pt-6 md:pb-8">
 
                 <GameEventManager
@@ -140,6 +152,7 @@ const Game = () => {
                     mustChoose={mustChoose}
                     privateInfo={privateInfo}
                     isPlayerTurn={isPlayerTurn}
+                    setGameEnded={setGameEnded}
                 />
 
                 {showCharacterHability && (

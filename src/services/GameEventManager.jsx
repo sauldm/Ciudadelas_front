@@ -8,7 +8,8 @@ export default function GameEventManager({
     onChooseCard,
     mustChoose,
     privateInfo,
-    isPlayerTurn
+    isPlayerTurn,
+    setGameEnded
 }) {
     const [queue, setQueue] = useState([]);
     const [current, setCurrent] = useState(null);
@@ -58,6 +59,7 @@ export default function GameEventManager({
             mustChoose={mustChoose}
             privateInfo={privateInfo}
             isPlayerTurn={isPlayerTurn}
+            setGameEnded={setGameEnded}
         />
     );
 }
