@@ -16,7 +16,6 @@ const Lobby = () => {
     const lobbyIdRef = useRef(id);
     const nickRef = useRef(nick);
 
-    console.log(game)
     useEffect(() => {
         setLobbyId(id);
     }, [id, setLobbyId]);
@@ -27,6 +26,7 @@ const Lobby = () => {
 
         try {
             await createGameHttp(id, players);
+            
         } catch (e) {
             console.error(e);
         }

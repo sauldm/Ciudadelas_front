@@ -142,7 +142,6 @@ const Game = () => {
 
     return (
         <div className="w-screen h-screen bg-game-bg overflow-hidden parent-perspective">
-            <p>Mostrar tabla final: {gameEnded + ''}</p>
             <div className="w-full h-full px-4 pt-4 pb-6 md:px-6 md:pt-6 md:pb-8">
 
                 <GameEventManager

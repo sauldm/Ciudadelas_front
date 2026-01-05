@@ -33,6 +33,8 @@ export default function AssassinHability({ onExecute, onClose, characterId, game
                     </button>
                 ))}
             </div>
+            <button onClick={() => onClose()}>x</button>
+
         </div>
     );
 }

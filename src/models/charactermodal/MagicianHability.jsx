@@ -24,6 +24,8 @@ export default function MagicianHability({ onExecute, onClose, characterId, game
                     {t.name}
                 </button>
             ))}
+            <button onClick={() => onClose()}>x</button>
+
         </div>
     );
 }

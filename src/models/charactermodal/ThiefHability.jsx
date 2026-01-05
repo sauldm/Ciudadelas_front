@@ -31,6 +31,8 @@ export default function ThiefHability({ onExecute, onClose, characterId, gameId 
                     </button>
                 ))}
             </div>
+            <button onClick={() => onClose()}>x</button>
+
         </div>
     );
 }

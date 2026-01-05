@@ -19,9 +19,10 @@ export default function MilitarHability({ onExecute, onClose, characterId, gameI
                         }}
                     >
                         {c.name}
-                        {" " + c.gold + " -> " + (parseInt(c.gold) + 1)}
+                        {" " + c.gold + " -> " + (parseInt(c.gold) - 1)}
                     </button>
                 ))}
+                <button onClick={() => onClose()}>x</button>
             </div>
         </div>
     );
