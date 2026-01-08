@@ -6,6 +6,15 @@ import { useSocket } from "../services/webSocket/socketProvider";
 import { createLobbyHttp, joinLobbyHttp } from "../services/api/lobbyApi";
 import { useLobbySocket } from "../services/webSocket/useLobbySocket";
 
+/**
+ * Página principal de la aplicación donde el usuario puede crear o unirse a lobbies.
+ *
+ * Muestra el estado del socket, lista de lobbies disponibles y botones para
+ * crear o unirse a partidas.
+ *
+ * @component
+ * @returns {JSX.Element} Interfaz de la página de inicio
+ */
 export default function Home() {
   const navigate = useNavigate();
   const { nick, connected: wsConnected } = useSocket();
@@ -15,6 +24,16 @@ export default function Home() {
   const [selected, setSelected] = useState("");
   const canJoin = useMemo(() => Boolean(selected), [selected]);
 
+  /**
+   * Crea un nuevo lobby en el backend y une al usuario a él.
+   *
+   * - Comprueba que el socket esté conectado y que exista `nick`.
+   * - Llama a `createLobbyHttp` para obtener un `lobbyId`.
+   * - Llama a `joinLobbyHttp` para unir al usuario al lobby y navega a la ruta del lobby.
+   *
+   * @async
+   * @returns {Promise<void>} Resuelve cuando la creación y unión han finalizado.
+   */
   const handleCreate = async () => {
     if (!wsConnected || !nick) return;
 
@@ -28,6 +47,15 @@ export default function Home() {
     }
   };
 
+  /**
+   * Une al usuario al lobby seleccionado.
+   *
+   * - Comprueba que hay un `selected` válido y que existe `nick`.
+   * - Llama a `joinLobbyHttp` y navega a la ruta del lobby.
+   *
+   * @async
+   * @returns {Promise<void>} Resuelve cuando la unión ha finalizado.
+   */
   const handleJoin = async () => {
     if (!selected || !nick) return;
 

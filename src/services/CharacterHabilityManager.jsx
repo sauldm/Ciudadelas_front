@@ -4,6 +4,22 @@ import MilitarHability from "../models/charactermodal/MilitarHability";
 import ThiefHability from "../models/charactermodal/ThiefHability";
 
 
+/**
+ * Componente modal que renderiza la UI de la habilidad de personaje correspondiente.
+ *
+ * Selecciona el componente específico según `characterId` y le pasa las props
+ * necesarias para ejecutar la habilidad.
+ *
+ * @param {{
+ *   characterId: number,
+ *   executeCharacterHability: function,
+ *   onClose: function,
+ *   gameId: string|number,
+ *   deckCardsBuilt?: Array<any>,
+ *   enemy?: any
+ * }} props - Props del componente.
+ * @returns {JSX.Element} Modal con la UI de la habilidad correspondiente.
+ */
 export function CharacterHabilityManager({
     characterId,
     executeCharacterHability,

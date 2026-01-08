@@ -5,6 +5,15 @@ import { useSocket } from "../services/webSocket/socketProvider";
 import { createGameHttp } from "../services/api/lobbyApi";
 import { useLobby } from "../providers/lobbyProvider";
 
+/**
+ * Componente de la sala (lobby) donde los jugadores esperan antes de iniciar la partida.
+ *
+ * Muestra el ID del lobby, la lista de jugadores conectados y permite al host
+ * iniciar la partida cuando hay suficientes jugadores.
+ *
+ * @component
+ * @returns {JSX.Element} Interfaz del lobby
+ */
 const Lobby = () => {
     const { id } = useParams();
     const { nick } = useSocket();
@@ -21,12 +30,22 @@ const Lobby = () => {
     }, [id, setLobbyId]);
 
 
+    /**
+     * Intenta crear una partida en el backend para el lobby actual.
+     *
+     * Comprueba condiciones preclara (conexión, existencia de lobbyId,
+     * número de jugadores y que no exista ya una partida) antes de llamar
+     * a la API `createGameHttp`.
+     *
+     * @async
+     * @returns {Promise<void>} Resuelve cuando la petición finaliza.
+     */
     const handleCreateGame = async () => {
         if (!connected || !lobbyId || players.length !== 2 || game) return;
 
         try {
             await createGameHttp(id, players);
-            
+
         } catch (e) {
             console.error(e);
         }

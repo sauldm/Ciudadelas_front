@@ -2,6 +2,23 @@ import { useEffect, useRef, useState } from "react";
 import { useSocket } from "./socketProvider";
 import { useParams } from "react-router-dom";
 
+/**
+ * Hook que maneja la lógica de lobbies y jugadores mediante STOMP.
+ *
+ * - Se suscribe a `/topic/lobbies` para recibir la lista de lobbies.
+ * - Permite fijar el `lobbyId` actual y escuchar `/topic/players/{lobbyId}`
+ *   y `/topic/gameCreated/{lobbyId}` para recibir actualizaciones.
+ *
+ * @returns {{
+ *   connected: boolean,
+ *   game: any,
+ *   setLobbyId: function,
+ *   lobbyId: string|null,
+ *   lobbies: Array<string>,
+ *   players: Array<string>,
+ *   unjoinLobby: function
+ * }} API pública del hook para uso en componentes.
+ */
 export function useLobbySocket() {
     const { connected: wsConnected, publish, subscribe } = useSocket();
 
@@ -60,6 +77,11 @@ export function useLobbySocket() {
         lobbyId,
         lobbies,
         players,
+        /**
+         * Solicita abandonar un lobby.
+         * @param {object} dto - Datos necesarios para abandonar el lobby (por ejemplo `{ id, nickName }`).
+         * @returns {void}
+         */
         unjoinLobby: (dto) => publish("/app/unjoinLobby", dto),
     };
 }

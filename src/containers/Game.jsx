@@ -11,6 +11,17 @@ import ScrollableCardRow from "../components/ScrollableCardRow";
 import { use } from "react";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Componente principal de la vista del juego.
+ *
+ * Utiliza los providers de juego y socket para renderizar el tablero,
+ * la información de jugador/enemigo y los controles relacionados. Mantiene
+ * estado UI local para mostrar habilidades, modo construcción y pantalla
+ * de fin de partida.
+ *
+ * @component
+ * @returns {JSX.Element} Interfaz completa del juego
+ */
 const Game = () => {
     const {
         gameState,
@@ -80,6 +91,13 @@ const Game = () => {
     const canUseCharacterHability = isPlayerTurn && !gameState?.characterHabilityUsed;
 
     useEffect(() => {
+        /**
+         * Cierra la UI de construcción cuando se hace clic fuera del área
+         * de construcción.
+         *
+         * @param {MouseEvent} e - Evento de ratón del listener del documento.
+         * @returns {void}
+         */
         const handleClickOutside = (e) => {
             if (
                 canBuild &&
