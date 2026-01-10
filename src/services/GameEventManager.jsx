@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import GameEventModal from "../components/modal/gameEventModal";
+import GameEventModal from "../components/modal/GameEventModal";
 import { loadShownEvents, saveShownEvents } from "../hooks/loadShownEvents";
 
 export default function GameEventManager({
