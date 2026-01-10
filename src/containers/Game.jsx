@@ -4,7 +4,7 @@ import mazo from "../utils/images/mazo.png";
 import fondo from "../utils/images/fondo.jpg";
 import Card from "../models/Card";
 import GameEventManager from "../services/GameEventManager";
-import { useGame } from "../providers/gameProvider";
+import { useGame } from "../providers/GameProvider";
 import CharacterHabilityManager from "../services/CharacterHabilityManager";
 import { scrollLeft, scrollRight } from "../utils/horizontalScroll";
 import ScrollableCardRow from "../components/ScrollableCardRow";
