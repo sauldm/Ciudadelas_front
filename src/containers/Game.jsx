@@ -160,7 +160,7 @@ const Game = () => {
 
     return (
         <div className="w-screen h-screen bg-game-bg overflow-hidden parent-perspective">
-            <div className="w-full h-full px-4 pt-4 pb-6 md:px-6 md:pt-6 md:pb-8">
+            <div className="w-full h-full px-4 pt-4 pb-6 md:px-6 md:pt-6 md:pb-8 flex flex-col">
 
                 <GameEventManager
                     events={events}
@@ -200,7 +200,7 @@ const Game = () => {
 
 
                 <div
-                    className="w-full h-full rounded-xl shadow-2xl overflow-hidden bg-no-repeat bg-center bg-cover"
+                    className="w-full flex-1 rounded-xl shadow-2xl overflow-hidden bg-no-repeat bg-center bg-cover"
                     style={{ backgroundImage: `url(${fondo})` }}
                 >
                     <div className="tablero">
@@ -210,7 +210,7 @@ const Game = () => {
                                 {index === 1 && enemy.numberDistrictsInHand}
 
                                 {index === 2 && (
-                                    <div>
+                                    <div className="flex gap-2 justify-center items-center card-row">
                                         {enemy.characterCardsPlayed.map(c => (
                                             <Card key={c.id} card={c} />
                                         ))}
@@ -249,7 +249,7 @@ const Game = () => {
 
 
                                 {index === 9 && (
-                                    <div className="flex gap-4 flex-wrap justify-center">
+                                    <div className="flex gap-4 flex-wrap justify-center card-row">
                                         {privateInfo.characterCards.map(c => (
                                             <Card key={c.id} card={c} className="card" />
                                         ))}
@@ -280,25 +280,25 @@ const Game = () => {
 
                                 {index === 11 && (
 
-                                    <div className="grid grid-cols-1 gap-3">
+                                    <div className="grid grid-cols-1 gap-3 controls">
                                         <button
                                             disabled={!isPlayerTurn}
                                             onClick={() => setCanBuild(!canBuild)}
-                                            className="w-full"
+                                            className="btn-action"
                                         >
                                             Comprar distrito
                                         </button>
                                         <button
                                             disabled={!canUseCharacterHability}
                                             onClick={() => setShowCharacterHability(true)}
-                                            className="w-full"
+                                            className="btn-action"
                                         >
                                             Habilidad personaje
                                         </button>
                                         <button
                                             disabled={!isPlayerTurn}
                                             onClick={nextStep}
-                                            className="w-full"
+                                            className="btn-action"
                                         >
                                             Terminar turno
                                         </button>
