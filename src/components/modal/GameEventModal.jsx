@@ -13,20 +13,25 @@ export default function GameEventModal({
 }) {
 
   useEffect(() => {
+    let timer;
+
     if (
       event &&
       event.events !== "ARCHITECT" &&
       event.events !== "PRIVATE" &&
       !mustChoose
     ) {
-      const timer =setTimeout(onClose, 2000);
-      return () => clearTimeout(timer);
+      timer = setTimeout(onClose, 2000);
     }
 
     if (event?.events === "GAME_ENDED") {
       setGameEnded(true);
     }
-  }, [event]);
+
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
+  }, [event, mustChoose, onClose, setGameEnded]);
 
   if (!event && !mustChoose) return null;
 

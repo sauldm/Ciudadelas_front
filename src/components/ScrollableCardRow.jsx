@@ -17,12 +17,12 @@ export default function ScrollableCardRow({ children }) {
             <div
                 ref={rowRef}
                 className="
-          flex gap-4
-          overflow-x-auto
-          scroll-smooth
-          no-scrollbar
-          px-10
-        "
+    flex gap-4
+    overflow-x-auto
+    scroll-smooth
+    no-scrollbar
+    px-4 tablet:px-10
+  "
             >
                 {children}
             </div>
@@ -31,11 +31,12 @@ export default function ScrollableCardRow({ children }) {
                 <button
                     onClick={() => scrollLeft(rowRef)}
                     className="
-            absolute left-0 top-1/2 -translate-y-1/2 z-10
-            bg-black/60 text-white
-            w-8 h-8 flex items-center justify-center
-            rounded-full hover:bg-black
-          "
+  absolute left-0 top-1/2 -translate-y-1/2 z-10
+  bg-black/60 text-white
+  w-6 h-6 tablet:w-8 tablet:h-8
+  flex items-center justify-center
+  rounded-full hover:bg-black
+"
                 >
                     ◀
                 </button>
@@ -45,11 +46,12 @@ export default function ScrollableCardRow({ children }) {
                 <button
                     onClick={() => scrollRight(rowRef)}
                     className="
-            absolute right-0 top-1/2 -translate-y-1/2 z-10
-            bg-black/60 text-white
-            w-8 h-8 flex items-center justify-center
-            rounded-full hover:bg-black
-          "
+  absolute left-0 top-1/2 -translate-y-1/2 z-10
+  bg-black/60 text-white
+  w-6 h-6 tablet:w-8 tablet:h-8
+  flex items-center justify-center
+  rounded-full hover:bg-black
+"
                 >
                     ▶
                 </button>

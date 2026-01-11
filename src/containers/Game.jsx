@@ -182,7 +182,7 @@ const Game = () => {
                         enemy={enemy}
                     />
                 )}
-                <div className="grid grid-cols-3 items-center">
+                <div className="grid grid-cols-1 tablet:grid-cols-3 items-center gap-2">
                     <h2 className="text-white text-left">
                         {player.gold} 🪙
                     </h2>
@@ -280,22 +280,25 @@ const Game = () => {
 
                                 {index === 11 && (
 
-                                    <div className="grid grid-cols-1 gap-4">
+                                    <div className="grid grid-cols-1 gap-3">
                                         <button
                                             disabled={!isPlayerTurn}
                                             onClick={() => setCanBuild(!canBuild)}
+                                            className="w-full"
                                         >
                                             Comprar distrito
                                         </button>
                                         <button
                                             disabled={!canUseCharacterHability}
                                             onClick={() => setShowCharacterHability(true)}
+                                            className="w-full"
                                         >
                                             Habilidad personaje
                                         </button>
                                         <button
                                             disabled={!isPlayerTurn}
                                             onClick={nextStep}
+                                            className="w-full"
                                         >
                                             Terminar turno
                                         </button>

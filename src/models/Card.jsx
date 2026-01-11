@@ -22,8 +22,8 @@ export const Card = ({ card, canBuild, onBuild, isBuilt, executeDistrictHability
     return (
         <div
             className={`
-        flex flex-col gap-2 items-center rounded-lg p-3 bg-game-highlight
-        ${interactiveClasses}
+  flex flex-col gap-2 items-center rounded-lg p-3 bg-game-highlight
+  ${interactiveClasses}
       `}
             onClick={(e) => {
                 e.stopPropagation();
@@ -33,8 +33,7 @@ export const Card = ({ card, canBuild, onBuild, isBuilt, executeDistrictHability
                 <img
                     src={inquisidorImg}
                     alt="Bishop"
-                    className="w-24 h-32 object-contain"
-                />
+                    className="w-20 h-28 tablet:w-24 tablet:h-32 object-contain" />
             )}
 
             <p className={`${textColor} font-semibold text-center`}>

@@ -162,3 +162,27 @@
   }
 
 }
+
+/* Responsive: móvil (max-width: 767px) */
+@media (max-width: 767px) {
+  .tablero {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, minmax(0, auto));
+    gap: 6px;
+  }
+
+  .celda {
+    padding: 6px;
+    min-height: 56px;
+    align-items: flex-start;
+  }
+
+  .imagen-centro {
+    width: 80%;
+    height: auto;
+  }
+
+  .player-hand {
+    gap: 8px;
+  }
+}
