@@ -262,6 +262,9 @@
 
   /* Card component: responsive width and fixed aspect ratio */
   .card-component {
+    /* visual styles aligned with .card utility but using the brown highlight background */
+    @apply bg-game-highlight rounded-md shadow-md border border-black/20 transition-all duration-200;
+
     width: 100%;
     aspect-ratio: 3 / 4;
     display: flex;
@@ -271,7 +274,6 @@
     justify-content: flex-start;
     padding: 0.75em; /* use em so it scales with container font-size */
     box-sizing: border-box;
-    background: inherit;
     flex: 0 1 auto;
     min-width: 64px;
   }
